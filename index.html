@@ -148,7 +148,7 @@
     <div id="hero-wrapper" class="w-full bg-brandBg transition-colors duration-700 ease-in-out">
         <section class="w-full min-h-[85vh] flex items-center justify-center overflow-hidden bg-white px-4 transition-colors duration-700">
             <video class="w-full h-full max-w-6xl object-contain mx-auto" autoplay loop muted playsinline>
-                <source src="Webmart.mp4" type="video/mp4">
+                <source src="assets/videos/WebMart.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </section>
@@ -488,43 +488,7 @@
     });
 </script>
 
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebMart — Home</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Essential Drawer Styles */
-        body.drawer-open { overflow: hidden; }
-        #contact-drawer-overlay { transition: opacity 0.5s ease; }
-        #contact-drawer { transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
-    </style>
-</head>
-<body class="bg-[#F9F7F2]">
-
-    <nav class="w-full py-6 px-16 flex justify-between items-center bg-[#F9F7F2]/90 backdrop-blur-md sticky top-0 z-50">
-        <div class="text-3xl font-bold">WebMart</div>
-        <div class="flex items-center gap-6">
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="services.html">Services</a>
-            <a href="#" id="nav-contact-btn" class="nav-item px-5 py-2.5 transition-colors duration-200 z-10 relative">Contact</a>
-        </div>
-    </nav>
-
-    <main class="py-20 text-center">
-        <h1 class="text-6xl font-bold">Welcome to WebMart</h1>
-    </main>
-
-    <section class="py-20 text-center">
-        <button id="footer-contact-btn" class="bg-black text-white px-8 py-4">Get In Touch</button>
-    </section>
-	<!-- PREMIUM SLIDING CONTACT DRAWER OVERLAY -->
-    <div id="contact-drawer-overlay" class="fixed inset-0 bg-black/60 z-50 opacity-0 pointer-events-none transition-opacity duration-500 backdrop-blur-sm">
+<div id="contact-drawer-overlay" class="fixed inset-0 bg-black/60 z-50 opacity-0 pointer-events-none transition-opacity duration-500 backdrop-blur-sm">
         <!-- Drawer Container -->
         <div id="contact-drawer" class="absolute top-0 right-0 h-full w-full sm:w-[550px] md:w-[650px] bg-[#EFECE6] text-[#050505] p-8 md:p-12 shadow-2xl transform translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-y-auto">
             
@@ -574,37 +538,86 @@
 </form>
         </div>
     </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const contactOverlay = document.getElementById("contact-drawer-overlay");
-            const contactDrawer = document.getElementById("contact-drawer");
-            const openBtns = [document.getElementById("nav-contact-btn"), document.getElementById("footer-contact-btn")];
-            const closeBtn = document.getElementById("close-drawer-btn");
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+        // --- SLIDING NAV PILL ---
+        const navContainer = document.getElementById("nav-container");
+        const navItems = document.querySelectorAll(".nav-item");
+        const slidingPill = document.getElementById("sliding-pill");
 
-            const openDrawer = (e) => {
-                if(e) e.preventDefault();
-                document.body.classList.add("drawer-open");
-                contactOverlay.classList.remove("pointer-events-none", "opacity-0");
-                contactDrawer.classList.remove("translate-x-full");
-            };
+        if (navContainer && slidingPill) {
+            navItems.forEach(item => {
+                item.addEventListener("mouseenter", () => {
+                    const rect = item.getBoundingClientRect();
+                    const containerRect = navContainer.getBoundingClientRect();
 
-            const closeDrawer = () => {
-                document.body.classList.remove("drawer-open");
-                contactOverlay.classList.add("pointer-events-none", "opacity-0");
-                contactDrawer.classList.add("translate-x-full");
-            };
+                    slidingPill.style.width = `${rect.width}px`;
+                    slidingPill.style.height = `${rect.height}px`;
+                    slidingPill.style.left = `${rect.left - containerRect.left}px`;
+                    slidingPill.style.top = `${rect.top - containerRect.top}px`;
+                    slidingPill.style.opacity = "1";
 
-            openBtns.forEach(btn => { if(btn) btn.addEventListener("click", openDrawer); });
-            if(closeBtn) closeBtn.addEventListener("click", closeDrawer);
-            
-            // Close if clicking outside the drawer
+                    navItems.forEach(el => el.classList.remove("active-text"));
+                    item.classList.add("active-text");
+                });
+            });
+
+            navContainer.addEventListener("mouseleave", () => {
+                slidingPill.style.opacity = "0";
+                navItems.forEach(el => el.classList.remove("active-text"));
+            });
+        }
+
+        // --- OVERRIDE ACCORDION ACTION HANDLERS ---
+        const accordionTriggers = document.querySelectorAll(".wm-accordion-trigger");
+        
+        accordionTriggers.forEach(trigger => {
+            trigger.addEventListener("click", () => {
+                const item = trigger.closest(".wm-accordion-item");
+                const isCurrentlyActive = item.classList.contains("is-open");
+                
+                document.querySelectorAll(".wm-accordion-item").forEach(el => {
+                    el.classList.remove("is-open");
+                    el.querySelector(".wm-accordion-trigger").setAttribute("aria-expanded", "false");
+                });
+
+                if (!isCurrentlyActive) {
+                    item.classList.add("is-open");
+                    trigger.setAttribute("aria-expanded", "true");
+                }
+            });
+        });
+
+        // --- PREMIUM CONTACT DRAWER INTERACTION HANDLERS ---
+        const contactOverlay = document.getElementById("contact-drawer-overlay");
+        const contactDrawer = document.getElementById("contact-drawer");
+        const openDrawerBtns = [document.getElementById("nav-contact-btn"), document.getElementById("footer-contact-btn")];
+        const closeDrawerBtn = document.getElementById("close-drawer-btn");
+
+        const openDrawer = (e) => {
+            if(e) e.preventDefault();
+            document.body.classList.add("drawer-open");
+            contactOverlay.classList.remove("pointer-events-none", "opacity-0");
+            contactDrawer.classList.remove("translate-x-full");
+        };
+
+        const closeDrawer = () => {
+            document.body.classList.remove("drawer-open");
+            contactOverlay.classList.add("pointer-events-none", "opacity-0");
+            contactDrawer.classList.add("translate-x-full");
+        };
+
+        openDrawerBtns.forEach(btn => {
+            if(btn) btn.addEventListener("click", openDrawer);
+        });
+
+        if(closeDrawerBtn) closeDrawerBtn.addEventListener("click", closeDrawer);
+        if(contactOverlay) {
             contactOverlay.addEventListener("click", (e) => {
                 if (e.target === contactOverlay) closeDrawer();
             });
-        });
-    </script>
-</body>
-</html>
-
+        }
+    });
+</script>
 </body>
 </html>
