@@ -1,0 +1,37 @@
+{
+  "categories": [
+    "Restaurant", "Doctor", "Clinic", "Hospital", "Salon", "Spa", "Gym", "Yoga", 
+    "School", "College", "Coaching", "Real Estate", "Interior Design", "Hotel", 
+    "Travel", "Finance", "Insurance", "Construction", "Portfolio", "Photography", 
+    "NGO", "Law Firm", "Automobile", "Retail", "Bakery", "Florist", "Pet Shop", 
+    "Temple", "Furniture", "Blog", "Consultant", "Startup", "Architecture", 
+    "Accounting", "Healthcare", "Education", "Food", "Beauty", "Business", "Technology"
+  ],
+  "categoryIcons": {
+    "Restaurant": "🍔", "Doctor": "🩺", "Clinic": "🏥", "Hospital": "🏢", "Salon": "✂️", 
+    "Spa": "🌿", "Gym": "🏋️", "Yoga": "🧘", "School": "🎒", "College": "🎓", 
+    "Coaching": "📝", "Real Estate": "🏠", "Interior Design": "🛋️", "Hotel": "🏨", "Travel": "✈️", 
+    "Finance": "📈", "Insurance": "🛡️", "Construction": "🏗️", "Portfolio": "💼", "Photography": "📷", 
+    "NGO": "🤝", "Law Firm": "⚖️", "Automobile": "🚗", "Retail": "🛍️", "Bakery": "🍰", 
+    "Florist": "💐", "Pet Shop": "🐾", "Temple": "🛕", "Furniture": "🪑", "Blog": "✍️", 
+    "Consultant": "🤝", "Startup": "🚀", "Architecture": "📐", "Accounting": "📊", "Healthcare": "❤️", 
+    "Education": "📚", "Food": "🍕", "Beauty": "💅", "Business": "🏢", "Technology": "💻"
+  },
+  "templates": [
+    { "id": 1, "name": "High Glamour Yoga Studio", "category": "Yoga", "desc": "Premium dark-mode responsive interface for luxury wellness centers.", "demoUrl": "https://high-glamour.pages.dev/" },
+    { "id": 2, "name": "The Modern Minimalist Flow", "category": "Yoga", "desc": "Clean typography and spacious layouts for contemporary mindfulness spaces.", "demoUrl": "https://the-modern-minimalist.pages.dev/" },
+    { "id": 3, "name": "Lifestyle Studio Experience", "category": "Yoga", "desc": "Vibrant layout ideal for integrated holistic health and somatic coaches.", "demoUrl": "https://lifestyle-studio-demo.pages.dev/" },
+    { "id": 4, "name": "Dynamic Power Yoga Portal", "category": "Yoga", "desc": "High-energy layout focusing on hot yoga classes, schedules, and active tiers.", "demoUrl": "https://dynamic-power-yoga.pages.dev/" },
+    { "id": 5, "name": "Luxury Zen Sanctuary", "category": "Yoga", "desc": "Elegant layout styled for premium meditation ashrams and wellness retreats.", "demoUrl": "https://luxury-zen-center.pages.dev/" },
+    { "id": 6, "name": "Mindful Workplace Corporate", "category": "Yoga", "desc": "B2B targeted layout offering on-site corporate breathing and wellness courses.", "demoUrl": "https://mindful-workplace.pages.dev/" },
+    { "id": 7, "name": "Prana Forest Eco Retreat", "category": "Yoga", "desc": "Nature-focused earthy palette optimized for outdoor yoga and sound healing camps.", "demoUrl": "https://prana-forest.pages.dev/" },
+    { "id": 8, "name": "Aloha Shakti Vinyasa", "category": "Yoga", "desc": "Bright, ocean-breeze inspired layout targeting coastal physical training centers.", "demoUrl": "https://aloha-shakti.pages.dev/" },
+    { "id": 9, "name": "Mistypeak Breathwork Center", "category": "Yoga", "desc": "Striking aerial presentation framework focused around deep meditation tracks.", "demoUrl": "https://mistypeak.pages.dev/" },
+    { "id": 10, "name": "Desert Oasis Hot Yoga", "category": "Yoga", "desc": "Warm aesthetic framework crafted elegantly for boutique studios.", "demoUrl": "https://desert-oasis-yoga.pages.dev/" },
+    { "id": 11, "name": "Lunar Flow Ashtanga Engine", "category": "Yoga", "desc": "Calming dark UI preset centered around moon phase alignment workshops.", "demoUrl": "https://lunar-flow-7d1.pages.dev/" },
+    { "id": 12, "name": "Aura Yoga Sanctuary Hub", "category": "Yoga", "desc": "Modern pastel interfaces focusing cleanly on digital class bookings and premium passes.", "demoUrl": "https://aura-yoga-sanctuary.pages.dev/" },
+    { "id": 13, "name": "Gourmet Bistro Hub", "category": "Restaurant", "desc": "Interactive menu layouts with embedded table reservation modules.", "demoUrl": "#" },
+    { "id": 14, "name": "CareFirst Dental Clinic", "category": "Clinic", "desc": "Clean patient booking portal with automated appointment pathways.", "demoUrl": "#" },
+    { "id": 15, "name": "Elite Crossfit Gym Studio", "category": "Gym", "desc": "Bold dark interface showcasing workout routines and structural pricing tiers.", "demoUrl": "#" }
+  ]
+}

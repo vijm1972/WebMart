@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebMart Navigation — Fluid Hover</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brandBg: '#F9F7F2', 
+                        brandDark: '#000000',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* --- DYNAMIC HOVER TEXT STATE --- */
+        /* Over light background: Pill is black, so hovered text must be white */
+        nav.text-brandDark .active-text {
+            color: #ffffff !important;
+        }
+
+        /* Over dark background: Pill is white, so hovered text must be black */
+        nav.text-white .active-text {
+            color: #000000 !important;
+        }
+
+        /* Continuous Horizontal Roll Animation Configuration - Perfectly Slowed */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            display: flex;
+            width: max-content;
+            animation: marquee 75s linear infinite;
+        }
+        .animate-marquee:hover {
+            animation-play-state: paused;
+        }
+
+        /* Fast Marquee configuration specifically optimized for industries tags text track (Right-to-Left) */
+        /* Fast Marquee configuration specifically optimized for industries tags text track (Right-to-Left) */
+@keyframes marquee-fast {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+.animate-marquee-fast {
+    display: flex;
+    width: max-content;
+    animation: marquee-fast 40s linear infinite; /* Changed from 38s to 40s */
+}
+.animate-marquee-fast:hover {
+    animation-play-state: paused;
+}
+
+/* Reverse Marquee configuration specifically optimized for services track (Left-to-Right) */
+@keyframes marquee-reverse {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+}
+.animate-marquee-reverse {
+    display: flex;
+    width: max-content;
+    animation: marquee-reverse 40s linear infinite; /* Changed from 42s to 40s */
+}
+.animate-marquee-reverse:hover {
+    animation-play-state: paused;
+}
+
+        /* --- GRAIN & MORTAR MATCHED STYLE ENGINES --- */
+        .industry-tag, .service-tag {
+            border: 1px solid rgba(255, 255, 255, 0.45) !important; /* Premium crisp white-tone border */
+            color: #ffffff !important;
+            opacity: 1 !important;
+            user-select: none;
+        }
+
+        /* When any track container is hovered, dim the text of sibling items, keeping the white border clean and crisp */
+        .animate-marquee-fast:hover .industry-tag,
+        .animate-marquee-reverse:hover .service-tag {
+            color: rgba(255, 255, 255, 0.35) !important; 
+            border-color: rgba(255, 255, 255, 0.25) !important; 
+        }
+        
+        /* Active target interaction state on mouse hover */
+        .animate-marquee-fast .industry-tag:hover,
+        .animate-marquee-reverse .service-tag:hover {
+            background-color: #A3DFD4 !important;
+            color: #000000 !important;
+            border-color: #A3DFD4 !important;
+            cursor: pointer;
+        }
+
+        /* Hide default pointer exclusively over the showcase when custom tracker is active */
+        .custom-cursor-zone {
+            cursor: none;
+        }
+    </style>
+</head>
+<body class="bg-brandBg m-0 p-0 antialiased transition-colors duration-700 ease-in-out">
+
+    <div id="custom-view-cursor" class="fixed w-16 h-16 bg-[#D4E76A] text-black font-semibold text-xs rounded-full flex items-center justify-center tracking-wider pointer-events-none opacity-0 scale-0 z-40 transition-transform duration-300 ease-out select-none">
+        VIEW
+    </div>
+
+    <nav class="w-full py-6 md:py-8 px-8 md:px-16 flex justify-between items-center bg-brandBg/90 backdrop-blur-md sticky top-0 z-50 border-b border-stone-200/30 transition-all duration-700 ease-in-out text-brandDark">
+        <div class="flex items-center space-x-4 select-none cursor-pointer">
+            <div class="w-12 h-10 overflow-hidden relative flex items-start justify-center">
+                <img src="WebMart Logo.png" alt="WebMart" class="w-16 max-w-none absolute -top-1 object-contain">
+            </div>
+            <div id="nav-logo-text" class="text-3xl font-bold tracking-tighter text-brandDark transition-colors duration-700">
+                WebMart
+            </div>
+        </div>
+
+        <div class="hidden lg:flex items-center relative text-[17px] font-medium tracking-tight transition-colors duration-700" id="nav-container">
+            <div id="sliding-pill" class="absolute bg-brandDark rounded-full opacity-0 pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] z-0"></div>
+            <a href="#" class="nav-item px-5 py-2.5 transition-colors duration-200 z-10 relative">Home</a>
+            <a href="#" class="nav-item px-5 py-2.5 transition-colors duration-200 z-10 relative">Category</a>
+            <a href="#" class="nav-item px-5 py-2.5 transition-colors duration-200 z-10 relative">Services</a>
+            <a href="#" class="nav-item px-5 py-2.5 transition-colors duration-200 z-10 relative">About</a>
+            <a href="#" class="nav-item px-5 py-2.5 transition-colors duration-200 z-10 relative">Contact</a>
+            <a href="#" class="nav-item px-5 py-2.5 transition-colors duration-200 z-10 relative font-semibold text-amber-600" data-special="true">Let's Talk</a>
+        </div>
+
+        <div class="lg:hidden">
+            <button id="mobile-menu-btn" class="text-brandDark focus:outline-none transition-colors duration-700">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <div id="hero-wrapper" class="w-full bg-brandBg transition-colors duration-700 ease-in-out">
+        <section class="w-full min-h-[85vh] flex items-center justify-center overflow-hidden bg-white px-4 transition-colors duration-700">
+            <video class="w-full h-full max-w-6xl object-contain mx-auto" autoplay loop muted playsinline>
+                <source src="Webmart.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </section>
+
+        <header class="px-6 md:px-12 pt-16 pb-24 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+            <div class="lg:col-span-8">
+                <span class="text-xs font-semibold uppercase tracking-widest text-amber-600 block mb-4">Web Design & Strategy Agency</span>
+                <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-extrabold leading-[0.95] tracking-tighter text-brandDark">
+                    WE MAKE WEBSITES<br>THAT WORK FOR<br><span class="text-stone-400">YOUR BRAND.</span>
+                </h1>
+            </div>
+            <div class="lg:col-span-4 lg:pl-8 pb-2">
+                <p class="text-lg text-stone-600 leading-relaxed font-normal">
+                    Empowering your business with high-performance creative engineering, sleek motion graphics, and conversion-focused architectures.
+                </p>
+            </div>
+        </header>
+    </div>
+
+    <main class="w-full bg-brandBg text-brandDark pt-32 pb-40 overflow-x-hidden transition-colors duration-700 ease-in-out" id="dark-portfolio-section" data-theme="dark">
+        <div class="w-full relative flex flex-col gap-6">
+            
+            <div class="max-w-7xl mx-auto px-6 md:px-12 w-full mb-6">
+                <span class="text-xs font-semibold uppercase tracking-widest text-amber-500 block mb-2">Selected Cases</span>
+                <h2 class="text-3xl md:text-5xl font-black tracking-tight uppercase">Featured Works</h2>
+            </div>
+
+            <div id="marquee-container" class="w-full overflow-hidden relative custom-cursor-zone mb-28">
+                <div class="animate-marquee flex gap-8 items-start pl-8">
+                    
+                    <div class="w-[480px] shrink-0 group">
+                        <div class="overflow-hidden bg-stone-800 aspect-[4/3] rounded-2xl w-full mb-4">
+                            <div class="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80');"></div>
+                        </div>
+                        <div class="px-1">
+                            <h3 class="text-xl font-bold tracking-tight">Millwork Commons</h3>
+                        </div>
+                    </div>
+                    <div class="w-[480px] shrink-0 group">
+                        <div class="overflow-hidden bg-stone-800 aspect-[4/3] rounded-2xl w-full mb-4">
+                            <div class="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80');"></div>
+                        </div>
+                        <div class="px-1">
+                            <h3 class="text-xl font-bold tracking-tight">Soaring Wings</h3>
+                        </div>
+                    </div>
+                    <div class="w-[480px] shrink-0 group">
+                        <div class="overflow-hidden bg-stone-800 aspect-[4/3] rounded-2xl w-full mb-4">
+                            <div class="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=800&q=80');"></div>
+                        </div>
+                        <div class="px-1">
+                            <h3 class="text-xl font-bold tracking-tight">Walthill Schools</h3>
+                        </div>
+                    </div>
+                    <div class="w-[480px] shrink-0 group">
+                        <div class="overflow-hidden bg-stone-800 aspect-[4/3] rounded-2xl w-full mb-4">
+                            <div class="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80');"></div>
+                        </div>
+                        <div class="px-1">
+                            <h3 class="text-xl font-bold tracking-tight">Omaha Performing Arts</h3>
+                        </div>
+                    </div>
+                    <div class="w-[480px] shrink-0 group">
+                        <div class="overflow-hidden bg-stone-800 aspect-[4/3] rounded-2xl w-full mb-4">
+                            <div class="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80');"></div>
+                        </div>
+                        <div class="px-1">
+                            <h3 class="text-xl font-bold tracking-tight">Foster Experience</h3>
+                        </div>
+                    </div>
+                    <div class="w-[480px] shrink-0 group">
+                        <div class="overflow-hidden bg-stone-800 aspect-[4/3] rounded-2xl w-full mb-4">
+                            <div class="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&q=80');"></div>
+                        </div>
+                        <div class="px-1">
+                            <h3 class="text-xl font-bold tracking-tight">HudlTV Network</h3>
+                        </div>
+                    </div>
+                    <div class="w-[480px] shrink-0 group">
+                        <div class="overflow-hidden bg-stone-800 aspect-[4/3] rounded-2xl w-full mb-4">
+                            <div class="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1542744094-3a31f103e35f?auto=format&fit=crop&w=800&q=80');"></div>
+                        </div>
+                        <div class="px-1">
+                            <h3 class="text-xl font-bold tracking-tight">My Cyber Path</h3>
+                        </div>
+                    </div>
+                    <div class="w-[480px] shrink-0 group">
+                        <div class="overflow-hidden bg-stone-800 aspect-[4/3] rounded-2xl w-full mb-4">
+                            <div class="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=800&q=80');"></div>
+                        </div>
+                        <div class="px-1">
+                            <h3 class="text-xl font-bold tracking-tight">Nexus Ecosystem</h3>
+                        </div>
+                    </div>
+                    <div class="w-[480px] shrink-0 group">
+                        <div class="overflow-hidden bg-stone-800 aspect-[4/3] rounded-2xl w-full mb-4">
+                            <div class="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80');"></div>
+                        </div>
+                        <div class="px-1">
+                            <h3 class="text-xl font-bold tracking-tight">Aero Workspace</h3>
+                        </div>
+                    </div>
+                    <div class="w-[480px] shrink-0 group">
+                        <div class="overflow-hidden bg-stone-800 aspect-[4/3] rounded-2xl w-full mb-4">
+                            <div class="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80');"></div>
+                        </div>
+                        <div class="px-1">
+                            <h3 class="text-xl font-bold tracking-tight">Alpha Systems</h3>
+                        </div>
+                    </div>
+
+                    <div class="w-[480px] shrink-0 group" aria-hidden="true">
+                        <div class="overflow-hidden bg-stone-800 aspect-[4/3] rounded-2xl w-full mb-4">
+                            <div class="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80');"></div>
+                        </div>
+                        <div class="px-1">
+                            <h3 class="text-xl font-bold tracking-tight">Millwork Commons</h3>
+                        </div>
+                    </div>
+                    <div class="w-[480px] shrink-0 group" aria-hidden="true">
+                        <div class="overflow-hidden bg-stone-800 aspect-[4/3] rounded-2xl w-full mb-4">
+                            <div class="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80');"></div>
+                        </div>
+                        <div class="px-1">
+                            <h3 class="text-xl font-bold tracking-tight">Soaring Wings</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full relative mb-14">
+                <div class="max-w-7xl mx-auto px-6 md:px-12 w-full mb-10">
+                    <h2 class="text-3xl md:text-5xl font-normal tracking-tight font-sans">
+                        Industries we've <del class="line-through text-stone-500 opacity-80 decoration-stone-500">disrupted</del> served.
+                    </h2>
+                </div>
+                
+                <div class="w-full overflow-hidden relative">
+                    <div class="animate-marquee-fast flex gap-6 items-center pl-6">
+                        
+                        <div class="industry-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide">Real Estate & Development</div>
+                        <div class="industry-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide">Retail & Consumer Goods</div>
+                        <div class="industry-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide">Software & Technology</div>
+                        <div class="industry-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide">Arts & Entertainment</div>
+                        <div class="industry-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide">Conferences & Events</div>
+                        <div class="industry-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide">Healthcare & Lifesciences</div>
+                        <div class="industry-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide">Salons & Wellness Ecosystems</div>
+                        <div class="industry-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide">Education & E-Learning</div>
+
+                        <div class="industry-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide" aria-hidden="true">Real Estate & Development</div>
+                        <div class="industry-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide" aria-hidden="true">Retail & Consumer Goods</div>
+                        <div class="industry-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide" aria-hidden="true">Software & Technology</div>
+                        <div class="industry-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide" aria-hidden="true">Arts & Entertainment</div>
+                        <div class="industry-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide" aria-hidden="true">Conferences & Events</div>
+                        <div class="industry-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide" aria-hidden="true">Healthcare & Lifesciences</div>
+                        <div class="industry-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide" aria-hidden="true">Salons & Wellness Ecosystems</div>
+                        <div class="industry-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide" aria-hidden="true">Education & E-Learning</div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full relative">
+                <div class="max-w-7xl mx-auto px-6 md:px-12 w-full mb-10">
+                    <h2 class="text-3xl md:text-5xl font-normal tracking-tight font-sans">
+                        Our Services.
+                    </h2>
+                </div>
+                
+                <div class="w-full overflow-hidden relative">
+                    <div class="animate-marquee-reverse flex gap-6 items-center pl-6">
+                        
+                        <div class="service-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide">🌐 Website Design</div>
+                        <div class="service-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide">🎨 Website Customization</div>
+                        <div class="service-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide">🌍 Domain Registration</div>
+                        <div class="service-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide">☁️ Web Hosting</div>
+                        <div class="service-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide">🔒 SSL Certificates</div>
+                        <div class="service-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide">📧 Business Email</div>
+                        <div class="service-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide">🔧 Website Maintenance</div>
+                        <div class="service-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide">🔍 SEO Services</div>
+                        <div class="service-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide">📍 Google Business Profile</div>
+                        <div class="service-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide">💬 WhatsApp Business Setup</div>
+                        <div class="service-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide">📱 Social Media Setup</div>
+                        <div class="service-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide">🤖 AI Content Creation</div>
+                        <div class="service-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide">🎯 Digital Marketing</div>
+                        <div class="service-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide">🛒 E-commerce Solutions</div>
+                        <div class="service-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide">📊 Analytics & Tracking</div>
+                        <div class="service-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide">🛡️ Security & Backups</div>
+                        <div class="service-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide">💡 Consultation & Training</div>
+
+                        <div class="service-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide" aria-hidden="true">🌐 Website Design</div>
+                        <div class="service-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide" aria-hidden="true">🎨 Website Customization</div>
+                        <div class="service-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide" aria-hidden="true">🌍 Domain Registration</div>
+                        <div class="service-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide" aria-hidden="true">☁️ Web Hosting</div>
+                        <div class="service-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide" aria-hidden="true">🔒 SSL Certificates</div>
+                        <div class="service-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide" aria-hidden="true">📧 Business Email</div>
+                        <div class="service-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide" aria-hidden="true">🔧 Website Maintenance</div>
+                        <div class="service-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide" aria-hidden="true">🔍 SEO Services</div>
+                        <div class="service-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide" aria-hidden="true">📍 Google Business Profile</div>
+                        <div class="service-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide" aria-hidden="true">💬 WhatsApp Business Setup</div>
+                        <div class="service-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide" aria-hidden="true">📱 Social Media Setup</div>
+                        <div class="service-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide" aria-hidden="true">🤖 AI Content Creation</div>
+                        <div class="service-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide" aria-hidden="true">🎯 Digital Marketing</div>
+                        <div class="service-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide" aria-hidden="true">🛒 E-commerce Solutions</div>
+                        <div class="service-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide" aria-hidden="true">📊 Analytics & Tracking</div>
+                        <div class="service-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide" aria-hidden="true">🛡️ Security & Backups</div>
+                        <div class="service-tag px-9 py-5 rounded-full transition-all duration-300 ease-out shrink-0 text-[19px] font-medium tracking-wide" aria-hidden="true">💡 Consultation & Training</div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <section class="bg-black text-white py-24 px-6 md:px-12 text-center border-t border-stone-900">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tight mb-8">Have a game-changing project in mind?</h2>
+            <a href="#" class="inline-block bg-white text-black font-display font-bold px-8 py-4 text-sm uppercase tracking-wider hover:bg-amber-600 hover:text-white transition-colors duration-300">
+                Get In Touch With WebMart
+            </a>
+        </div>
+    </section>
+
+    <script>
+        const container = document.getElementById('nav-container');
+        const pill = document.getElementById('sliding-pill');
+        const items = document.querySelectorAll('.nav-item');
+
+        items.forEach(item => {
+            item.addEventListener('mouseenter', (e) => {
+                const linkWidth = item.offsetWidth;
+                const linkHeight = item.offsetHeight;
+                const linkLeft = item.offsetLeft;
+                const linkTop = item.offsetTop;
+
+                pill.style.width = `${linkWidth}px`;
+                pill.style.height = `${linkHeight}px`;
+                pill.style.left = `${linkLeft}px`;
+                pill.style.top = `${linkTop}px`;
+                pill.style.opacity = '1';
+
+                items.forEach(i => i.classList.remove('active-text'));
+                item.classList.add('active-text');
+            });
+        });
+
+        container.addEventListener('mouseleave', () => {
+            pill.style.opacity = '0';
+            items.forEach(i => i.classList.remove('active-text'));
+        });
+
+        const viewCursor = document.getElementById('custom-view-cursor');
+        const marqueeContainer = document.getElementById('marquee-container');
+
+        let mouseX = 0, mouseY = 0; 
+        let currentX = 0, currentY = 0; 
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function updateCursorFrame() {
+            currentX += (mouseX - currentX) * 0.12; 
+            currentY += (mouseY - currentY) * 0.12; 
+            
+            viewCursor.style.left = `${currentX - 32}px`;
+            viewCursor.style.top = `${currentY - 32}px`;
+            
+            requestAnimationFrame(updateCursorFrame);
+        }
+        requestAnimationFrame(updateCursorFrame);
+
+        marqueeContainer.addEventListener('mouseenter', () => {
+            viewCursor.style.opacity = '1';
+            viewCursor.style.transform = 'scale(1)';
+        });
+
+        marqueeContainer.addEventListener('mouseleave', () => {
+            viewCursor.style.opacity = '0';
+            viewCursor.style.transform = 'scale(0)';
+        });
+
+        const portfolioSection = document.getElementById('dark-portfolio-section');
+        const navBar = document.querySelector('nav');
+        const navLogoText = document.getElementById('nav-logo-text');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const body = document.body;
+
+        const themeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    body.style.backgroundColor = '#000000';
+                    portfolioSection.style.backgroundColor = '#000000';
+                    portfolioSection.classList.remove('text-brandDark', 'bg-brandBg');
+                    portfolioSection.classList.add('text-white');
+                    
+                    navBar.style.backgroundColor = 'rgba(0, 0, 0, 0.85)';
+                    navBar.classList.remove('bg-brandBg/90', 'text-brandDark');
+                    navBar.classList.add('text-white');
+                    navLogoText.classList.remove('text-brandDark');
+                    navLogoText.classList.add('text-white');
+                    container.classList.remove('text-brandDark');
+                    container.classList.add('text-white');
+                    mobileMenuBtn.classList.remove('text-brandDark');
+                    mobileMenuBtn.classList.add('text-white');
+                    pill.classList.remove('bg-brandDark');
+                    pill.classList.add('bg-white');
+                } else {
+                    body.style.backgroundColor = '#F9F7F2';
+                    portfolioSection.style.backgroundColor = '#F9F7F2';
+                    portfolioSection.classList.remove('text-white');
+                    portfolioSection.classList.add('text-brandDark', 'bg-brandBg');
+
+                    navBar.style.backgroundColor = 'rgba(249, 247, 242, 0.9)';
+                    navBar.classList.remove('text-white');
+                    navBar.classList.add('text-brandDark', 'bg-brandBg/90');
+                    navLogoText.classList.remove('text-white');
+                    navLogoText.classList.add('text-brandDark');
+                    container.classList.remove('text-white');
+                    container.classList.add('text-brandDark');
+                    mobileMenuBtn.classList.remove('text-white');
+                    mobileMenuBtn.classList.add('text-brandDark');
+                    pill.classList.remove('bg-white');
+                    pill.classList.add('bg-brandDark');
+                }
+            });
+        }, { root: null, threshold: 0.15 });
+
+        themeObserver.observe(portfolioSection);
+    </script>
+</body>
+</html>

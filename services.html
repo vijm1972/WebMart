@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebMart Services — Complete Digital Ecosystem Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700&family=Playfair+Display:ital,wght=0,400..700;1,400..700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        brandBg: '#050505',
+                        brandPanel: '#0E0E0E',
+                        brandAccent: '#F59E0B', /* Premium Amber */
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar behaviors matching luxury platform interfaces */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #222222;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #F59E0B;
+        }
+
+        /* Nav active text high-contrast glide styling override */
+        #nav-container .active-text {
+            color: #000000 !important;
+            font-weight: 500;
+        }
+
+        /* Glassmorphic backdrop blurring tools */
+        .glass-card {
+            background: rgba(14, 14, 14, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Abstract dynamic light gradient glow structures */
+        .glow-sphere {
+            position: absolute;
+            background: radial-gradient(circle, rgba(245,158,11,0.08) 0%, rgba(5,5,5,0) 70%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Prevent page background scrolling during drawer operations */
+        body.drawer-open {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="bg-[#050505] m-0 p-0 antialiased text-[#E9F4F2] font-sans overflow-x-hidden">
+
+    <div class="glow-sphere w-[600px] h-[600px] top-[-10%] left-[-10%]"></div>
+    <div class="glow-sphere w-[800px] h-[800px] top-[25%] right-[-15%]"></div>
+    <div class="glow-sphere w-[700px] h-[700px] bottom-[10%] left-[-10%]"></div>
+
+    <nav class="w-full py-6 md:py-8 px-8 md:px-16 flex justify-between items-center bg-[#050505]/90 backdrop-blur-md sticky top-0 z-40 border-b border-white/10 text-white">
+        <div class="flex items-center space-x-4 select-none cursor-pointer" onclick="window.location.href='index.html'">
+            <div class="w-12 h-10 flex items-center justify-center">
+                <img src="WebMart Logo.png" alt="WebMart" class="max-w-full max-h-full object-contain">
+            </div>
+            <div class="text-3xl font-bold tracking-tighter text-white">
+                WebMart
+            </div>
+        </div>
+
+        <div class="hidden lg:flex items-center relative text-[17px] font-medium tracking-tight text-white gap-2" id="nav-container">
+            <div id="sliding-pill" class="absolute bg-white rounded-full opacity-0 pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] z-0"></div>
+            
+            <a href="index.html" class="nav-item px-5 py-2.5 transition-colors duration-200 z-10 relative">Home</a>
+            <a href="index.html#category" class="nav-item px-5 py-2.5 transition-colors duration-200 z-10 relative">Category</a>
+            <a href="index.html#services" class="nav-item px-5 py-2.5 transition-colors duration-200 z-10 relative">Services</a>
+            <a href="about.html" class="nav-item px-5 py-2.5 transition-colors duration-200 z-10 relative">About</a>
+            <a href="#" id="nav-contact-btn" class="nav-item px-5 py-2.5 transition-colors duration-200 z-10 relative">Contact</a>
+            <a href="index.html#talk" class="nav-item px-5 py-2.5 transition-colors duration-200 z-10 relative font-semibold text-amber-500">Let's Talk</a>
+        </div>
+
+        <div class="lg:hidden">
+            <button id="mobile-menu-btn" class="text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <header class="relative w-full py-20 md:py-32 px-6 md:px-12 max-w-7xl mx-auto text-center z-10 overflow-hidden">
+        <div class="mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md">
+            <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+            <span class="text-xs md:text-sm font-medium tracking-widest text-amber-500 uppercase">Professional Digital Solutions</span>
+        </div>
+        <h1 class="text-4xl sm:text-5xl md:text-7xl font-sans font-bold tracking-tight text-white max-w-5xl mx-auto leading-[1.1] mb-8">
+            Everything Your Business Needs to Succeed Online
+        </h1>
+        <p class="text-lg md:text-2xl text-stone-400 max-w-3xl mx-auto font-light leading-relaxed mb-12">
+            From ready-made business websites and custom development to hosting, SEO, branding, and ongoing support, WebMart provides everything you need under one roof.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="index.html#marketplace" class="w-full sm:w-auto px-8 py-4 bg-white text-black font-semibold rounded-md tracking-wide hover:bg-amber-500 hover:text-white transition-all duration-300 transform shadow-lg text-center">
+                Browse Website Designs
+            </a>
+            <a href="#" id="hero-consult-btn" class="w-full sm:w-auto px-8 py-4 bg-white/5 border border-white/10 text-white font-semibold rounded-md tracking-wide hover:bg-white/10 transition-all duration-300 text-center">
+                Get Free Consultation
+            </a>
+        </div>
+    </header>
+
+    <section class="py-16 px-6 md:px-12 max-w-7xl mx-auto relative z-10">
+        <div class="flex flex-col md:flex-row items-start md:items-end justify-between mb-16 border-b border-white/15 pb-8">
+            <div>
+                <h2 class="text-3xl md:text-5xl font-serif text-white tracking-tight mb-4">Our Service Portfolio</h2>
+                <p class="text-stone-400 max-w-xl">Explore our comprehensive array of digital assets engineered to secure high user conversions and local enterprise growth.</p>
+            </div>
+            <span class="text-sm font-mono text-amber-500/60 mt-4 md:mt-0">[ 26 Native Offerings Available ]</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <div class="glass-card rounded-xl p-8 flex flex-col justify-between group hover:border-amber-500/40 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)]">
+                <div>
+                    <div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Website Marketplace</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-6">Browse professionally designed business websites, preview live demos, and choose the perfect website for your business.</p>
+                    <ul class="space-y-2 mb-8 text-xs text-stone-500 font-medium">
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Ready-made website designs</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Industry-specific templates</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Live preview tracking mechanics</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Fast setup customization</li>
+                    </ul>
+                </div>
+                <button class="drawer-trigger-btn w-full py-3 bg-white/5 border border-white/10 text-white rounded-md font-semibold text-xs tracking-wider uppercase group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">Learn More</button>
+            </div>
+
+            <div class="glass-card rounded-xl p-8 flex flex-col justify-between group hover:border-amber-500/40 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)]">
+                <div>
+                    <div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Custom Website Development</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-6">Need something unique? We create fully customized websites tailored to your business goals.</p>
+                    <ul class="space-y-2 mb-8 text-xs text-stone-500 font-medium">
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Business websites</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Corporate architectures</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> High conversion landing pages</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Fully responsive execution</li>
+                    </ul>
+                </div>
+                <button class="drawer-trigger-btn w-full py-3 bg-white/5 border border-white/10 text-white rounded-md font-semibold text-xs tracking-wider uppercase group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">Learn More</button>
+            </div>
+
+            <div class="glass-card rounded-xl p-8 flex flex-col justify-between group hover:border-amber-500/40 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)]">
+                <div>
+                    <div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 00-2 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Website Customization</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-6">Already selected a design? We'll customize everything perfectly to match your specific localized storefront asset requirements.</p>
+                    <ul class="space-y-2 mb-8 text-xs text-stone-500 font-medium">
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Logo replacement & graphics</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Brand matched coloring presets</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Integrated conversion forms</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Galleries and testimonials</li>
+                    </ul>
+                </div>
+                <button class="drawer-trigger-btn w-full py-3 bg-white/5 border border-white/10 text-white rounded-md font-semibold text-xs tracking-wider uppercase group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">Learn More</button>
+            </div>
+
+            <div class="glass-card rounded-xl p-8 flex flex-col justify-between group hover:border-amber-500/40 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)]">
+                <div>
+                    <div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9h18"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Domain Registration</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-6">Register the perfect high-trust corporate domain name extensions for your local business.</p>
+                    <ul class="space-y-2 mb-8 text-xs text-stone-500 font-medium">
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Universal .com registration</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Premium TLD .in / .co.in nodes</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Fast domain zero-loss migration</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Encrypted management vaults</li>
+                    </ul>
+                </div>
+                <button class="drawer-trigger-btn w-full py-3 bg-white/5 border border-white/10 text-white rounded-md font-semibold text-xs tracking-wider uppercase group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">Learn More</button>
+            </div>
+
+            <div class="glass-card rounded-xl p-8 flex flex-col justify-between group hover:border-amber-500/40 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)]">
+                <div>
+                    <div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Web Hosting</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-6">Fast, secure and reliable hosting arrays deployed natively with bulletproof platform uptime metrics.</p>
+                    <ul class="space-y-2 mb-8 text-xs text-stone-500 font-medium">
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Enterprise Cloud NVMe Storage</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Automated Let's Encrypt SSL</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Daily redundancy snapshot backups</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Integrated Edge CDN delivery</li>
+                    </ul>
+                </div>
+                <button class="drawer-trigger-btn w-full py-3 bg-white/5 border border-white/10 text-white rounded-md font-semibold text-xs tracking-wider uppercase group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">Learn More</button>
+            </div>
+
+            <div class="glass-card rounded-xl p-8 flex flex-col justify-between group hover:border-amber-500/40 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)]">
+                <div>
+                    <div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Business Email</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-6">Create professional corporate email addresses that build trust with localized target customer circles.</p>
+                    <ul class="space-y-2 mb-8 text-xs text-stone-500 font-medium">
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Custom info@ prefixes</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Sales / support custom routing</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Modern crisp secure webmail interface</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Seamless mobile system sync</li>
+                    </ul>
+                </div>
+                <button class="drawer-trigger-btn w-full py-3 bg-white/5 border border-white/10 text-white rounded-md font-semibold text-xs tracking-wider uppercase group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">Learn More</button>
+            </div>
+
+            <div class="glass-card rounded-xl p-8 flex flex-col justify-between group hover:border-amber-500/40 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)]">
+                <div>
+                    <div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Website Maintenance</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-6">Keep your business website highly secure, updated, and performing optimally across search indices.</p>
+                    <ul class="space-y-2 mb-8 text-xs text-stone-500 font-medium">
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Script and patch lifecycle updates</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Code level bug repairs</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Hardened text content changes</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> 24/7 Priority priority support</li>
+                    </ul>
+                </div>
+                <button class="drawer-trigger-btn w-full py-3 bg-white/5 border border-white/10 text-white rounded-md font-semibold text-xs tracking-wider uppercase group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">Learn More</button>
+            </div>
+
+            <div class="glass-card rounded-xl p-8 flex flex-col justify-between group hover:border-amber-500/40 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)]">
+                <div>
+                    <div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Search Engine Optimization</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-6">Improve your visibility organically on Google Search and attract paying customers consistently.</p>
+                    <ul class="space-y-2 mb-8 text-xs text-stone-500 font-medium">
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Intensive local keyword discovery</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Semantic structural On-page SEO</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Schema structure implementations</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Comprehensive analytical reports</li>
+                    </ul>
+                </div>
+                <button class="drawer-trigger-btn w-full py-3 bg-white/5 border border-white/10 text-white rounded-md font-semibold text-xs tracking-wider uppercase group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">Learn More</button>
+            </div>
+
+            <div class="glass-card rounded-xl p-8 flex flex-col justify-between group hover:border-amber-500/40 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)]">
+                <div>
+                    <div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Google Business Profile</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-6">Elevate your neighborhood proximity search footprint to scale local walk-ins dramatically.</p>
+                    <ul class="space-y-2 mb-8 text-xs text-stone-500 font-medium">
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Profile setup & ownership verification</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Google Maps localized positioning</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Review generation asset design</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Product catalog syncing modules</li>
+                    </ul>
+                </div>
+                <button class="drawer-trigger-btn w-full py-3 bg-white/5 border border-white/10 text-white rounded-md font-semibold text-xs tracking-wider uppercase group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">Learn More</button>
+            </div>
+
+            <div class="glass-card rounded-xl p-8 flex flex-col justify-between group hover:border-amber-500/40 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)]">
+                <div>
+                    <div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">WhatsApp Business Integration</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-6">Convert organic target visitors into hot inquiries immediately with structured real-time click pipelines.</p>
+                    <ul class="space-y-2 mb-8 text-xs text-stone-500 font-medium">
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Sticky click-to-chat widgets</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Conversational entry parameters</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Catalog display pipeline access</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Fast lead transmission arrays</li>
+                    </ul>
+                </div>
+                <button class="drawer-trigger-btn w-full py-3 bg-white/5 border border-white/10 text-white rounded-md font-semibold text-xs tracking-wider uppercase group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">Learn More</button>
+            </div>
+
+            <div class="glass-card rounded-xl p-8 flex flex-col justify-between group hover:border-amber-500/40 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)]">
+                <div>
+                    <div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0V12m-3 .5a1.5 1.5 0 003 0M10 11.5V14m0-2.5v-7a1.5 1.5 0 113 0V12m-3 .5a1.5 1.5 0 003 0M13 11.5V14m0-2.5v-8a1.5 1.5 0 113 0V12m-3 .5a1.5 1.5 0 003 0m3-2.5v4a1.5 1.5 0 01-3 0v-4m3 0a1.5 1.5 0 00-3 0m-3 4H7a4 4 0 00-4 4v1h18v-1a4 4 0 00-4-4h-3"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Social Media Setup</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-6">Create and optimize your business profiles perfectly across relevant target social platforms.</p>
+                    <ul class="space-y-2 mb-8 text-xs text-stone-500 font-medium">
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Facebook business modifications</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Instagram commercial optimization</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> LinkedIn corporate configuration</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Consistent profile visuals setup</li>
+                    </ul>
+                </div>
+                <button class="drawer-trigger-btn w-full py-3 bg-white/5 border border-white/10 text-white rounded-md font-semibold text-xs tracking-wider uppercase group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">Learn More</button>
+            </div>
+
+            <div class="glass-card rounded-xl p-8 flex flex-col justify-between group hover:border-amber-500/40 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)]">
+                <div>
+                    <div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">AI Content Creation</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-6">Professional AI-assisted content optimization blueprints for landing pages and corporate blogs.</p>
+                    <ul class="space-y-2 mb-8 text-xs text-stone-500 font-medium">
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Strategic website copy generation</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Optimized conversion service pages</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Descriptive local business blogs</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Schema structured query sheets</li>
+                    </ul>
+                </div>
+                <button class="drawer-trigger-btn w-full py-3 bg-white/5 border border-white/10 text-white rounded-md font-semibold text-xs tracking-wider uppercase group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">Learn More</button>
+            </div>
+
+            <div class="glass-card rounded-xl p-8 flex flex-col justify-between group hover:border-amber-500/40 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)]">
+                <div>
+                    <div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.828 2.828a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Logo & Brand Identity</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-6">Build a memorable, high-end brand identity that positions your company uniquely in local markets.</p>
+                    <ul class="space-y-2 mb-8 text-xs text-stone-500 font-medium">
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Vector corporate logo design</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Color palette system presets</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Typographic architectural systems</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Integrated favicons and badges</li>
+                    </ul>
+                </div>
+                <button class="drawer-trigger-btn w-full py-3 bg-white/5 border border-white/10 text-white rounded-md font-semibold text-xs tracking-wider uppercase group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">Learn More</button>
+            </div>
+
+            <div class="glass-card rounded-xl p-8 flex flex-col justify-between group hover:border-amber-500/40 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)]">
+                <div>
+                    <div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Graphic Design</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-6">Professional high-contrast marketing collateral templates for online and offline operations.</p>
+                    <ul class="space-y-2 mb-8 text-xs text-stone-500 font-medium">
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Premium modern business cards</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Flyers and menu layouts</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Corporate stationeries & invoice shapes</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Digital presentation assets</li>
+                    </ul>
+                </div>
+                <button class="drawer-trigger-btn w-full py-3 bg-white/5 border border-white/10 text-white rounded-md font-semibold text-xs tracking-wider uppercase group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">Learn More</button>
+            </div>
+
+            <div class="glass-card rounded-xl p-8 flex flex-col justify-between group hover:border-amber-500/40 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)]">
+                <div>
+                    <div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Speed Optimization</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-6">Make your website lightning fast to maximize conversions and improve your Google rank.</p>
+                    <ul class="space-y-2 mb-8 text-xs text-stone-500 font-medium">
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Core Web Vitals optimization</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> High efficiency image minification</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Server-side caching engine nodes</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Mobile runtime scripts removal</li>
+                    </ul>
+                </div>
+                <button class="drawer-trigger-btn w-full py-3 bg-white/5 border border-white/10 text-white rounded-md font-semibold text-xs tracking-wider uppercase group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">Learn More</button>
+            </div>
+
+            <div class="glass-card rounded-xl p-8 flex flex-col justify-between group hover:border-amber-500/40 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)]">
+                <div>
+                    <div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Website Security</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-6">Protect your business digital parameters from potential web threats and exploits natively.</p>
+                    <ul class="space-y-2 mb-8 text-xs text-stone-500 font-medium">
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Secured encryption network loops</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Edge protection firewalls setup</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Regular structural malware analysis</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Critical core recovery support</li>
+                    </ul>
+                </div>
+                <button class="drawer-trigger-btn w-full py-3 bg-white/5 border border-white/10 text-white rounded-md font-semibold text-xs tracking-wider uppercase group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">Learn More</button>
+            </div>
+
+            <div class="glass-card rounded-xl p-8 flex flex-col justify-between group hover:border-amber-500/40 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)]">
+                <div>
+                    <div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 012-2h2a2 2 0 012 2v6m-6 0h6M22 12a10 10 0 11-20 0 10 10 0 0120 0z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Analytics & Tracking</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-6">Understand user behavioral data pipelines completely to maximize operational commercial yield patterns.</p>
+                    <ul class="space-y-2 mb-8 text-xs text-stone-500 font-medium">
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Google Analytics 4 integrations</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Search Console health monitoring</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Meta Pixel tracking parameters</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Conversion funnels diagnostic suite</li>
+                    </ul>
+                </div>
+                <button class="drawer-trigger-btn w-full py-3 bg-white/5 border border-white/10 text-white rounded-md font-semibold text-xs tracking-wider uppercase group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">Learn More</button>
+            </div>
+
+            <div class="glass-card rounded-xl p-8 flex flex-col justify-between group hover:border-amber-500/40 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)]">
+                <div>
+                    <div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 00-2 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Lead Generation</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-6">Capture more high-intent commercial inquiries with elegant, streamlined lead pathways.</p>
+                    <ul class="space-y-2 mb-8 text-xs text-stone-500 font-medium">
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Optimized form validation scripts</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> One-tap mobile callback triggers</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> WhatsApp lead capture architecture</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> CRM integration data pipelines</li>
+                    </ul>
+                </div>
+                <button class="drawer-trigger-btn w-full py-3 bg-white/5 border border-white/10 text-white rounded-md font-semibold text-xs tracking-wider uppercase group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">Learn More</button>
+            </div>
+
+            <div class="glass-card rounded-xl p-8 flex flex-col justify-between group hover:border-amber-500/40 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)]">
+                <div>
+                    <div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">AI Chatbot Integration</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-6">Provide instant client customer support parameters 24x7 without manual operations.</p>
+                    <ul class="space-y-2 mb-8 text-xs text-stone-500 font-medium">
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Automated structural query sheets</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Intelligent real-time data capture</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Virtual calendar appointment links</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Continuous information pipelines</li>
+                    </ul>
+                </div>
+                <button class="drawer-trigger-btn w-full py-3 bg-white/5 border border-white/10 text-white rounded-md font-semibold text-xs tracking-wider uppercase group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">Learn More</button>
+            </div>
+
+            <div class="glass-card rounded-xl p-8 flex flex-col justify-between group hover:border-amber-500/40 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)]">
+                <div>
+                    <div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Appointment Systems</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-6">Enable target customers to book appointments online smoothly with automated confirmations.</p>
+                    <div class="mb-6 flex flex-wrap gap-1.5 text-[10px] font-mono text-amber-500/70 bg-amber-500/5 px-2 py-1.5 rounded border border-amber-500/10">
+                        <span>Doctors</span> • <span>Salons</span> • <span>Gyms</span> • <span>Hotels</span> • <span>Restaurants</span>
+                    </div>
+                    <ul class="space-y-2 mb-8 text-xs text-stone-500 font-medium">
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Native calendar schedule frames</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Automated user email reminders</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Real-time dashboard access ports</li>
+                    </ul>
+                </div>
+                <button class="drawer-trigger-btn w-full py-3 bg-white/5 border border-white/10 text-white rounded-md font-semibold text-xs tracking-wider uppercase group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">Learn More</button>
+            </div>
+
+            <div class="glass-card rounded-xl p-8 flex flex-col justify-between group hover:border-amber-500/40 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)]">
+                <div>
+                    <div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M14 12a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Restaurant Solutions</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-6">Complete digital ecosystems explicitly optimized for modern fine dining and localized cafés.</p>
+                    <ul class="space-y-2 mb-8 text-xs text-stone-500 font-medium">
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Interactive responsive digital menus</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> QR code table menu routing nodes</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> WhatsApp direct checkout pipelines</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Real-time verified user review walls</li>
+                    </ul>
+                </div>
+                <button class="drawer-trigger-btn w-full py-3 bg-white/5 border border-white/10 text-white rounded-md font-semibold text-xs tracking-wider uppercase group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">Learn More</button>
+            </div>
+
+            <div class="glass-card rounded-xl p-8 flex flex-col justify-between group hover:border-amber-500/40 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)]">
+                <div>
+                    <div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">E-Commerce Solutions</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-6">Sell physical products cleanly online with integrated transaction security models.</p>
+                    <ul class="space-y-2 mb-8 text-xs text-stone-500 font-medium">
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Product catalog categorization arrays</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Integrated Razorpay / Indian gateways</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Operational inventory control tracking</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Smart discount code script structures</li>
+                    </ul>
+                </div>
+                <button class="drawer-trigger-btn w-full py-3 bg-white/5 border border-white/10 text-white rounded-md font-semibold text-xs tracking-wider uppercase group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">Learn More</button>
+            </div>
+
+            <div class="glass-card rounded-xl p-8 flex flex-col justify-between group hover:border-amber-500/40 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)]">
+                <div>
+                    <div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Content Management</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-6">Keep your business website fresh, active, and updated with fast turnarounds.</p>
+                    <ul class="space-y-2 mb-8 text-xs text-stone-500 font-medium">
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> On-demand corporate informational updates</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Continuous catalog sync operations</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Interactive portfolio project adjustments</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Smooth promotional banner deployment</li>
+                    </ul>
+                </div>
+                <button class="drawer-trigger-btn w-full py-3 bg-white/5 border border-white/10 text-white rounded-md font-semibold text-xs tracking-wider uppercase group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">Learn More</button>
+            </div>
+
+            <div class="glass-card rounded-xl p-8 flex flex-col justify-between group hover:border-amber-500/40 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)]">
+                <div>
+                    <div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Digital Marketing</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-6">Scale business reach quickly with high conversion Google and Meta paid ad campaigns.</p>
+                    <ul class="space-y-2 mb-8 text-xs text-stone-500 font-medium">
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Google Search advertising setup</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Meta / Instagram target parameters</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Isolated conversion landing models</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Complete performance auditing cycles</li>
+                    </ul>
+                </div>
+                <button class="drawer-trigger-btn w-full py-3 bg-white/5 border border-white/10 text-white rounded-md font-semibold text-xs tracking-wider uppercase group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">Learn More</button>
+            </div>
+
+            <div class="glass-card rounded-xl p-8 flex flex-col justify-between group hover:border-amber-500/40 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)]">
+                <div>
+                    <div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Website Migration</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-6">Move your website infrastructure smoothly without downtime or ranking drops.</p>
+                    <ul class="space-y-2 mb-8 text-xs text-stone-500 font-medium">
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Server file and database transport</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Zero-downtime DNS routing handovers</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Structural performance verification</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> SEO positioning preservation setups</li>
+                    </ul>
+                </div>
+                <button class="drawer-trigger-btn w-full py-3 bg-white/5 border border-white/10 text-white rounded-md font-semibold text-xs tracking-wider uppercase group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">Learn More</button>
+            </div>
+
+            <div class="glass-card rounded-xl p-8 flex flex-col justify-between group hover:border-amber-500/40 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)]">
+                <div>
+                    <div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Training & Consultation</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-6">Learn how to easily manage, update, and scale your website platform independently.</p>
+                    <ul class="space-y-2 mb-8 text-xs text-stone-500 font-medium">
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> 1-on-1 personalized website training</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Local optimization guidance suites</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Strategic commercial roadmap design</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Safe independent update guides</li>
+                    </ul>
+                </div>
+                <button class="drawer-trigger-btn w-full py-3 bg-white/5 border border-white/10 text-white rounded-md font-semibold text-xs tracking-wider uppercase group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">Learn More</button>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-24 bg-white text-black relative z-10">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="text-center mb-16 md:mb-24">
+                <span class="text-xs font-mono tracking-widest text-amber-600 uppercase font-bold bg-amber-500/10 px-3 py-1 rounded">Optimized Business Tiers</span>
+                <h2 class="text-4xl md:text-6xl font-sans font-bold tracking-tight mt-4 mb-6">Transparent Service Packages</h2>
+                <p class="text-stone-600 max-w-2xl mx-auto text-base md:text-lg font-light">Select an enterprise plan tailored exactly to your current scale of digital market operations.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="border border-stone-200 rounded-xl p-8 bg-stone-50 flex flex-col justify-between hover:border-black transition-colors duration-300">
+                    <div>
+                        <h3 class="text-lg font-mono uppercase tracking-wider text-stone-400 mb-2">Starter</h3>
+                        <div class="text-3xl font-bold font-sans tracking-tight mb-6">Essential Digital Node</div>
+                        <p class="text-stone-600 text-sm leading-relaxed mb-8 border-b border-stone-200 pb-6">Ideal for tiny standalone shops needing an immediate Google Maps visibility anchor point.</p>
+                        <ul class="space-y-3 text-xs text-stone-700 font-medium">
+                            <li class="flex items-center gap-2"><span class="text-amber-600">✓</span> 1 Ready-Made Core Design</li>
+                            <li class="flex items-center gap-2"><span class="text-amber-600">✓</span> Shared NVMe Cloud Tier</li>
+                            <li class="flex items-center gap-2"><span class="text-amber-600">✓</span> Free Shared SSL Node</li>
+                            <li class="flex items-center gap-2"><span class="text-amber-600">✓</span> WhatsApp Pipeline Relay</li>
+                        </ul>
+                    </div>
+                    <button class="drawer-trigger-btn w-full mt-8 py-3.5 bg-stone-900 text-white rounded-md font-semibold text-xs tracking-wider uppercase hover:bg-amber-600 transition-colors">Select Plan</button>
+                </div>
+
+                <div class="border-2 border-amber-500 rounded-xl p-8 bg-white flex flex-col justify-between shadow-xl relative transform lg:-translate-y-3">
+                    <div class="absolute top-0 right-6 transform -translate-y-1/2 bg-amber-500 text-white text-[10px] tracking-widest uppercase font-bold px-3 py-1 rounded-full">Most Popular</div>
+                    <div>
+                        <h3 class="text-lg font-mono uppercase tracking-wider text-amber-600 mb-2">Business</h3>
+                        <div class="text-3xl font-bold font-sans tracking-tight mb-6">Local Growth Suite</div>
+                        <p class="text-stone-600 text-sm leading-relaxed mb-8 border-b border-stone-200 pb-6">Perfect for gyms, upscale salons, multi-room clinics, and regional dining networks.</p>
+                        <ul class="space-y-3 text-xs text-stone-700 font-medium">
+                            <li class="flex items-center gap-2"><span class="text-amber-600">✓</span> Custom Core Marketplace Model</li>
+                            <li class="flex items-center gap-2"><span class="text-amber-600">✓</span> Premium Domain + Host Suite</li>
+                            <li class="flex items-center gap-2"><span class="text-amber-600">✓</span> 5 Business Email Boxes</li>
+                            <li class="flex items-center gap-2"><span class="text-amber-600">✓</span> Comprehensive Local SEO setup</li>
+                            <li class="flex items-center gap-2"><span class="text-amber-600">✓</span> Core Web Vitals configuration</li>
+                        </ul>
+                    </div>
+                    <button class="drawer-trigger-btn w-full mt-8 py-3.5 bg-amber-500 text-white rounded-md font-semibold text-xs tracking-wider uppercase hover:bg-black transition-colors shadow-md">Select Plan</button>
+                </div>
+
+                <div class="border border-stone-200 rounded-xl p-8 bg-stone-50 flex flex-col justify-between hover:border-black transition-colors duration-300">
+                    <div>
+                        <h3 class="text-lg font-mono uppercase tracking-wider text-stone-400 mb-2">Professional</h3>
+                        <div class="text-3xl font-bold font-sans tracking-tight mb-6">Advanced Performance</div>
+                        <p class="text-stone-600 text-sm leading-relaxed mb-8 border-b border-stone-200 pb-6">Engineered for expanding commercial agencies looking for complete custom layout pipelines.</p>
+                        <ul class="space-y-3 text-xs text-stone-700 font-medium">
+                            <li class="flex items-center gap-2"><span class="text-amber-600">✓</span> Custom Development Options</li>
+                            <li class="flex items-center gap-2"><span class="text-amber-600">✓</span> High Performance dedicated host</li>
+                            <li class="flex items-center gap-2"><span class="text-amber-600">✓</span> AI Assistant Integration modules</li>
+                            <li class="flex items-center gap-2"><span class="text-amber-600">✓</span> Monthly analytic report syncs</li>
+                            <li class="flex items-center gap-2"><span class="text-amber-600">✓</span> Direct CRM leads streaming</li>
+                        </ul>
+                    </div>
+                    <button class="drawer-trigger-btn w-full mt-8 py-3.5 bg-stone-900 text-white rounded-md font-semibold text-xs tracking-wider uppercase hover:bg-amber-600 transition-colors">Select Plan</button>
+                </div>
+
+                <div class="border border-stone-200 rounded-xl p-8 bg-stone-50 flex flex-col justify-between hover:border-black transition-colors duration-300">
+                    <div>
+                        <h3 class="text-lg font-mono uppercase tracking-wider text-stone-400 mb-2">Enterprise</h3>
+                        <div class="text-3xl font-bold font-sans tracking-tight mb-6">Complete Automation</div>
+                        <p class="text-stone-600 text-sm leading-relaxed mb-8 border-b border-stone-200 pb-6">Tailor-made infrastructure setups requiring intensive security and transaction layers.</p>
+                        <ul class="space-y-3 text-xs text-stone-700 font-medium">
+                            <li class="flex items-center gap-2"><span class="text-amber-600">✓</span> Bespoke transactional blueprints</li>
+                            <li class="flex items-center gap-2"><span class="text-amber-600">✓</span> Premium edge firewalls configuration</li>
+                            <li class="flex items-center gap-2"><span class="text-amber-600">✓</span> Unlimited priority developer support</li>
+                            <li class="flex items-center gap-2"><span class="text-amber-600">✓</span> Multi-platform ad campaign sync</li>
+                        </ul>
+                    </div>
+                    <button class="drawer-trigger-btn w-full mt-8 py-3.5 bg-stone-900 text-white rounded-md font-semibold text-xs tracking-wider uppercase hover:bg-amber-600 transition-colors">Select Plan</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 md:px-12 max-w-7xl mx-auto relative z-10">
+        <div class="text-left mb-16 md:mb-24">
+            <h2 class="text-3xl md:text-5xl font-serif text-white tracking-tight mb-4">Why Local Businesses Choose WebMart</h2>
+            <p class="text-stone-400 max-w-xl">We blend premium engineering aesthetic with practical, conversions-driven configurations.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="p-6 rounded-lg border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-colors duration-300">
+                <div class="text-amber-500 font-bold font-mono text-lg mb-4">01 //</div>
+                <h4 class="text-xl font-bold text-white mb-2">Industry-Specific Sites</h4>
+                <p class="text-stone-400 text-xs leading-relaxed">Perfect layout matches optimized for standard Indian enterprise workflows out of the box.</p>
+            </div>
+            <div class="p-6 rounded-lg border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-colors duration-300">
+                <div class="text-amber-500 font-bold font-mono text-lg mb-4">02 //</div>
+                <h4 class="text-xl font-bold text-white mb-2">Fast Delivery</h4>
+                <p class="text-stone-400 text-xs leading-relaxed">Skip long multi-month delay queues; select a verified baseline design and launch your platform in days.</p>
+            </div>
+            <div class="p-6 rounded-lg border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-colors duration-300">
+                <div class="text-amber-500 font-bold font-mono text-lg mb-4">03 //</div>
+                <h4 class="text-xl font-bold text-white mb-2">Professional Support</h4>
+                <p class="text-stone-400 text-xs leading-relaxed">Direct human maintenance access nodes ensuring security patches and content loops update smoothly.</p>
+            </div>
+            <div class="p-6 rounded-lg border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-colors duration-300">
+                <div class="text-amber-500 font-bold font-mono text-lg mb-4">04 //</div>
+                <h4 class="text-xl font-bold text-white mb-2">Affordable Pricing</h4>
+                <p class="text-stone-400 text-xs leading-relaxed">Enterprise quality engineering executions without high custom corporate agency premium pricing overheads.</p>
+            </div>
+            <div class="p-6 rounded-lg border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-colors duration-300">
+                <div class="text-amber-500 font-bold font-mono text-lg mb-4">05 //</div>
+                <h4 class="text-xl font-bold text-white mb-2">Scalable Solutions</h4>
+                <p class="text-stone-400 text-xs leading-relaxed">Start with a minimalist local capture structure and scale easily to advanced e-commerce components later.</p>
+            </div>
+            <div class="p-6 rounded-lg border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-colors duration-300">
+                <div class="text-amber-500 font-bold font-mono text-lg mb-4">06 //</div>
+                <h4 class="text-xl font-bold text-white mb-2">Reliable Hosting</h4>
+                <p class="text-stone-400 text-xs leading-relaxed">High performance NVMe redundancy backbones maintaining pristine loading times across mobile paths.</p>
+            </div>
+            <div class="p-6 rounded-lg border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-colors duration-300">
+                <div class="text-amber-500 font-bold font-mono text-lg mb-4">07 //</div>
+                <h4 class="text-xl font-bold text-white mb-2">SEO Ready</h4>
+                <p class="text-stone-400 text-xs leading-relaxed">Clean, semantic, high-speed underlying index markup structure giving your company local keyword advantages.</p>
+            </div>
+            <div class="p-6 rounded-lg border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-colors duration-300">
+                <div class="text-amber-500 font-bold font-mono text-lg mb-4">08 //</div>
+                <h4 class="text-xl font-bold text-white mb-2">Ongoing Maintenance</h4>
+                <p class="text-stone-400 text-xs leading-relaxed">Continuous file image backups, security audits, and real-time support keeping your business running smoothly.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-black text-white py-28 px-6 md:px-12 text-center border-t border-stone-900 relative overflow-hidden">
+        <div class="glow-sphere w-[500px] h-[500px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-40"></div>
+        <div class="max-w-4xl mx-auto relative z-10">
+            <h2 class="font-sans text-4xl md:text-6xl font-bold tracking-tight mb-6">Ready to Grow Your Business Online?</h2>
+            <p class="text-stone-400 text-base md:text-xl font-light max-w-2xl mx-auto mb-12 leading-relaxed">Browse our ready-made website marketplace or speak with our experts to build the perfect digital solution for your business.</p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="index.html#marketplace" class="w-full sm:w-auto inline-block bg-white text-black font-sans font-bold px-8 py-4 text-sm uppercase tracking-wider hover:bg-amber-600 hover:text-white transition-colors duration-300">
+                    Browse Website Designs
+                </a>
+                <button id="cta-consult-btn" class="w-full sm:w-auto inline-block bg-white/5 border border-white/10 text-white font-sans font-bold px-8 py-4 text-sm uppercase tracking-wider hover:bg-white/10 transition-colors duration-300">
+                    Get Free Consultation
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <div id="contact-drawer-overlay" class="fixed inset-0 bg-black/60 z-50 opacity-0 pointer-events-none transition-opacity duration-500 backdrop-blur-sm">
+        <div id="contact-drawer" class="absolute top-0 right-0 h-full w-full sm:w-[550px] md:w-[650px] bg-[#EFECE6] text-[#050505] p-8 md:p-12 shadow-2xl transform translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-y-auto">
+            <div class="flex justify-end mb-8">
+                <button id="close-drawer-btn" class="text-[#050505]/60 hover:text-black transition-colors focus:outline-none">
+                    <svg class="w-8 h-8 font-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <h2 class="text-4xl md:text-6xl font-serif font-medium tracking-tight mb-4">How can we help?</h2>
+            <p class="text-stone-500 text-sm mb-8 leading-relaxed">Tell us about your local business goals. Our engineering teams will follow up to finalize layout customizations immediately.</p>
+
+            <form class="space-y-6" onsubmit="event.preventDefault(); alert('Request logged successfully via WebMart secure routing pipelines.');">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <input type="text" required placeholder="First Name" class="w-full bg-white/70 border border-black/10 rounded-md px-4 py-3.5 text-base placeholder-black/40 focus:outline-none focus:border-amber-600 transition-colors">
+                    <input type="text" required placeholder="Last Name" class="w-full bg-white/70 border border-black/10 rounded-md px-4 py-3.5 text-base placeholder-black/40 focus:outline-none focus:border-amber-600 transition-colors">
+                </div>
+                <input type="email" required placeholder="Email Address" class="w-full bg-white/70 border border-black/10 rounded-md px-4 py-3.5 text-base placeholder-black/40 focus:outline-none focus:border-amber-600 transition-colors">
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <input type="tel" required placeholder="Mobile Number" class="w-full bg-white/70 border border-black/10 rounded-md px-4 py-3.5 text-base placeholder-black/40 focus:outline-none focus:border-amber-600 transition-colors">
+                    <input type="text" required placeholder="Location / Business Type" class="w-full bg-white/70 border border-black/10 rounded-md px-4 py-3.5 text-base placeholder-black/40 focus:outline-none focus:border-amber-600 transition-colors">
+                </div>
+
+                <textarea placeholder="Tell us about your project requirements..." rows="4" class="w-full bg-white/70 border border-black/10 rounded-md px-4 py-3.5 text-base placeholder-black/40 focus:outline-none focus:border-amber-600 transition-colors resize-none"></textarea>
+                
+                <button type="submit" class="w-full bg-[#050505] text-white py-4 font-sans font-semibold rounded-md tracking-wider hover:bg-amber-600 transition-colors shadow-md uppercase text-xs">
+                    SUBMIT REQUEST
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="bg-black text-stone-500 text-sm py-16 border-t border-stone-950 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            <div>
+                <div class="flex items-center space-x-3 text-white font-bold text-2xl tracking-tighter mb-6">
+                    <div class="w-8 h-8">
+                        <img src="WebMart Logo.png" alt="" class="max-w-full max-h-full object-contain">
+                    </div>
+                    <span>WebMart</span>
+                </div>
+                <p class="text-stone-400 text-xs leading-relaxed max-w-xs">India's premium marketplace for scalable ready-made business architectures and holistic digital optimization partnerships.</p>
+            </div>
+            <div>
+                <h5 class="text-white text-xs font-mono uppercase tracking-widest mb-4">Quick Links</h5>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="services.html" class="hover:text-amber-500 transition-colors">Services Ecosystem</a></li>
+                    <li><a href="index.html#marketplace" class="hover:text-amber-500 transition-colors">Website Categories</a></li>
+                    <li><a href="services.html#pricing" class="hover:text-amber-500 transition-colors">Pricing Options</a></li>
+                    <li><a href="about.html" class="hover:text-amber-500 transition-colors">About Corporate</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-white text-xs font-mono uppercase tracking-widest mb-4">Support & FAQ</h5>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#" class="drawer-trigger-btn hover:text-amber-500 transition-colors">Contact Hub</a></li>
+                    <li><a href="index.html#faq" class="hover:text-amber-500 transition-colors">System Help Center</a></li>
+                    <li><a href="#" class="hover:text-amber-500 transition-colors">Privacy Parameters</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-white text-xs font-mono uppercase tracking-widest mb-4">Newsletter</h5>
+                <p class="text-xs mb-4">Receive strategic local digital insights updates.</p>
+                <div class="flex">
+                    <input type="email" placeholder="Your Email" class="bg-stone-900 border border-stone-800 rounded-l px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500 w-full">
+                    <button class="bg-white text-black px-4 py-2 rounded-r font-bold text-xs hover:bg-amber-500 hover:text-white transition-colors">➔</button>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 md:px-12 border-t border-stone-900 pt-8 flex flex-col sm:flex-row justify-between items-center text-xs">
+            <p>&copy; 2026 WebMart Marketplace. All professional rights reserved.</p>
+            <div class="flex space-x-4 mt-4 sm:mt-0 opacity-60">
+                <a href="#" class="hover:text-amber-500">Facebook</a>
+                <a href="#" class="hover:text-amber-500">Instagram</a>
+                <a href="#" class="hover:text-amber-500">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // --- FLUID HOVER SLIDING NAVIGATION PILL CONTROLLER ---
+            const navContainer = document.getElementById("nav-container");
+            const navItems = document.querySelectorAll(".nav-item");
+            const slidingPill = document.getElementById("sliding-pill");
+
+            if (navContainer && slidingPill) {
+                navItems.forEach(item => {
+                    item.addEventListener("mouseenter", () => {
+                        const rect = item.getBoundingClientRect();
+                        const containerRect = navContainer.getBoundingClientRect();
+
+                        slidingPill.style.width = `${rect.width}px`;
+                        slidingPill.style.height = `${rect.height}px`;
+                        slidingPill.style.left = `${rect.left - containerRect.left}px`;
+                        slidingPill.style.top = `${rect.top - containerRect.top}px`;
+                        slidingPill.style.opacity = "1";
+
+                        navItems.forEach(el => el.classList.remove("active-text"));
+                        item.classList.add("active-text");
+                    });
+                });
+
+                navContainer.addEventListener("mouseleave", () => {
+                    slidingPill.style.opacity = "0";
+                    navItems.forEach(el => el.classList.remove("active-text"));
+                });
+            }
+
+            // --- PREMIUM MULTI-TRIGGER SIDE-DRAWER CONTACT PANEL MECHANICS ---
+            const overlay = document.getElementById("contact-drawer-overlay");
+            const drawer = document.getElementById("contact-drawer");
+            const closeBtn = document.getElementById("close-drawer-btn");
+            
+            // Collect all standalone action buttons targeted to pull down input panel
+            const customTriggers = [
+                document.getElementById("nav-contact-btn"),
+                document.getElementById("hero-consult-btn"),
+                document.getElementById("cta-consult-btn")
+            ];
+            
+            // Also map all generic card CTA "Learn More" buttons across the 26 grid positions
+            const genericTriggers = document.querySelectorAll(".drawer-trigger-btn");
+
+            const openDrawer = (e) => {
+                if(e) e.preventDefault();
+                document.body.classList.add("drawer-open");
+                overlay.classList.remove("pointer-events-none", "opacity-0");
+                drawer.classList.remove("translate-x-full");
+            };
+
+            const closeDrawer = () => {
+                document.body.classList.remove("drawer-open");
+                overlay.classList.add("pointer-events-none", "opacity-0");
+                drawer.classList.add("translate-x-full");
+            };
+
+            customTriggers.forEach(btn => { if(btn) btn.addEventListener("click", openDrawer); });
+            genericTriggers.forEach(btn => { if(btn) btn.addEventListener("click", openDrawer); });
+            
+            if(closeBtn) closeBtn.addEventListener("click", closeDrawer);
+            if(overlay) {
+                overlay.addEventListener("click", (e) => {
+                    if (e.target === overlay) closeDrawer();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

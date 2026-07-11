@@ -1,0 +1,349 @@
+/* ==========================================================================
+   RESET & SYSTEM VARIABLE DECLARATIONS
+   ========================================================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg-color: #050505;
+    --text-primary: #E9F4F2;
+    --text-title: #DDEDEC;
+    --accent-color: #B7D8D4;
+    --divider-color: rgba(255, 255, 255, 0.15);
+    --button-border: rgba(200, 230, 225, 0.4);
+    --body-text-color: rgba(255, 255, 255, 0.85);
+    
+    /* Animation Easing Parameters */
+    --transition-duration: 0.45s;
+    --transition-easing: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   LAYOUT ARCHITECTURE
+   ========================================================================== */
+.wm-about-section {
+    width: 100%;
+    background-color: var(--bg-color);
+    padding: 120px 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wm-about-container {
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+}
+
+/* ==========================================================================
+   SECTION TYPOGRAPHY HEADERS
+   ========================================================================== */
+.wm-about-header {
+    max-width: 850px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.wm-section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 54px;
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--text-title);
+    letter-spacing: -0.02em;
+}
+
+.wm-section-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    line-height: 1.6;
+    color: var(--body-text-color);
+    font-weight: 400;
+}
+
+/* ==========================================================================
+   LUXURY ACCORDION STRUCTURAL MECHANICS
+   ========================================================================== */
+.wm-accordion {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--divider-color);
+}
+
+.wm-accordion-item {
+    width: 100%;
+    border-bottom: 1px solid var(--divider-color);
+    position: relative;
+    background: transparent;
+    transition: border-color var(--transition-duration) var(--transition-easing);
+}
+
+/* Interactive Accordion Trigger Link Area */
+.wm-accordion-trigger {
+    width: 100%;
+    min-height: 110px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 32px 0;
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+    color: inherit;
+    gap: 40px;
+}
+
+.wm-accordion-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--text-title);
+    letter-spacing: -0.01em;
+    transition: color var(--transition-duration) var(--transition-easing);
+}
+
+/* ==========================================================================
+   CIRCULAR INTERACTIVE BUTTON & CROSS/PLUS SYMBOL
+   ========================================================================== */
+.wm-action-circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 1px solid var(--button-border);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-shrink: 0;
+    background-color: rgba(183, 216, 212, 0);
+    transition: 
+        background-color var(--transition-duration) var(--transition-easing),
+        border-color var(--transition-duration) var(--transition-easing),
+        box-shadow var(--transition-duration) var(--transition-easing);
+}
+
+/* Optimized Vector Plus Geometric Bars */
+.wm-icon-plus {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    display: block;
+}
+
+.wm-icon-plus::before,
+.wm-icon-plus::after {
+    content: '';
+    position: absolute;
+    background-color: var(--text-title);
+    transition: transform var(--transition-duration) var(--transition-easing), background-color var(--transition-duration) var(--transition-easing);
+}
+
+/* Horizontal Segment */
+.wm-icon-plus::before {
+    top: 9px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+}
+
+/* Vertical Segment */
+.wm-icon-plus::after {
+    top: 0;
+    left: 9px;
+    width: 2px;
+    height: 100%;
+}
+
+/* ==========================================================================
+   INTERACTIVE HOVER STATES
+   ========================================================================== */
+.wm-accordion-trigger:hover .wm-accordion-title {
+    color: var(--accent-color);
+}
+
+.wm-accordion-trigger:hover .wm-action-circle {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 15px rgba(183, 216, 212, 0.15);
+}
+
+/* Focus Indicator Ring for High Accessibility Compliance */
+.wm-accordion-trigger:focus-visible {
+    outline: none;
+}
+.wm-accordion-trigger:focus-visible .wm-accordion-title {
+    color: var(--accent-color);
+    text-decoration: underline calc(1px + 0.05em) solid var(--accent-color);
+    text-underline-offset: 8px;
+}
+
+/* ==========================================================================
+   EXPANDABLE INNER HEIGHT CONSTRAINTS PANEL
+   ========================================================================== */
+.wm-accordion-panel {
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    transition: 
+        height var(--transition-duration) var(--transition-easing),
+        visibility var(--transition-duration) var(--transition-easing);
+}
+
+.wm-accordion-inner {
+    padding-bottom: 56px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 
+        opacity var(--transition-duration) var(--transition-easing),
+        transform var(--transition-duration) var(--transition-easing);
+}
+
+/* Two-Column Asymmetric Content Presentation Layout Engine */
+.wm-accordion-content-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px;
+    align-items: start;
+}
+
+.wm-body-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    line-height: 1.8;
+    color: var(--body-text-color);
+    font-weight: 400;
+}
+
+/* Premium Typography List Track */
+.wm-bullet-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    font-family: 'Inter', sans-serif;
+}
+
+.wm-bullet-list li {
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--body-text-color);
+    position: relative;
+    padding-left: 28px;
+}
+
+/* Premium Custom Bullet Point Geometry */
+.wm-bullet-list li::before {
+    content: "•";
+    position: absolute;
+    left: 4px;
+    top: -1px;
+    color: var(--accent-color);
+    font-size: 22px;
+}
+
+/* ==========================================================================
+   OPEN ACTIVATED STATE TRANSFORM MECHANICS
+   ========================================================================== */
+.wm-accordion-item.is-open {
+    border-color: var(--accent-color);
+}
+
+.wm-accordion-item.is-open .wm-accordion-panel {
+    visibility: visible;
+}
+
+.wm-accordion-item.is-open .wm-accordion-inner {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Transform Target Trigger Title Accent persistent coloring */
+.wm-accordion-item.is-open .wm-accordion-title {
+    color: var(--accent-color);
+}
+
+/* Morph Plus Symbol Matrix Transform smoothly into X Clear */
+.wm-accordion-item.is-open .wm-icon-plus::before {
+    transform: rotate(45deg);
+    background-color: #050505;
+}
+
+.wm-accordion-item.is-open .wm-icon-plus::after {
+    transform: rotate(45deg);
+    background-color: #050505;
+}
+
+/* Scale and Fill Circular Target Background with Accent color mapping */
+.wm-accordion-item.is-open .wm-action-circle {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+/* ==========================================================================
+   DYNAMIC MEDIA QUERY BREAKPOINTS RESPONSIVENESS
+   ========================================================================== */
+@media (max-width: 1199px) {
+    .wm-accordion-title {
+        font-size: 48px;
+    }
+    .wm-accordion-content-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .wm-about-container {
+        gap: 60px;
+    }
+}
+
+@media (max-width: 767px) {
+    .wm-about-section {
+        padding: 120px 16px;
+    }
+    .wm-section-title {
+        font-size: 38px;
+    }
+    .wm-section-desc {
+        font-size: 18px;
+    }
+    .wm-accordion-trigger {
+        padding: 24px 0;
+        align-items: flex-start;
+    }
+    .wm-accordion-title {
+        font-size: 34px;
+        line-height: 1.2;
+        padding-top: 4px;
+    }
+    .wm-action-circle {
+        width: 50px;
+        height: 50px;
+    }
+    .wm-icon-plus {
+        width: 16px;
+        height: 16px;
+    }
+    .wm-icon-plus::before {
+        top: 7px;
+    }
+    .wm-icon-plus::after {
+        left: 7px;
+    }
+    .wm-body-text, .wm-bullet-list li {
+        font-size: 17px;
+    }
+    .wm-about-container {
+        gap: 48px;
+    }
+}

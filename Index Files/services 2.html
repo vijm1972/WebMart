@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebMart Services — Complete Digital Ecosystem Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700&family=Playfair+Display:ital,wght=0,400..700;1,400..700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        brandBg: '#050505',
+                        brandPanel: '#0E0E0E',
+                        brandAccent: '#F59E0B', /* Premium Amber */
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar behaviors matching luxury platform interfaces */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #222222;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #F59E0B;
+        }
+
+        /* Nav active text high-contrast glide styling override */
+        #nav-container .active-text {
+            color: #000000 !important;
+            font-weight: 500;
+        }
+
+        /* Glassmorphic backdrop blurring tools */
+        .glass-card {
+            background: rgba(14, 14, 14, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Abstract dynamic light gradient glow structures */
+        .glow-sphere {
+            position: absolute;
+            background: radial-gradient(circle, rgba(245,158,11,0.08) 0%, rgba(5,5,5,0) 70%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Prevent page background scrolling during drawer operations */
+        body.drawer-open {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="bg-[#050505] m-0 p-0 antialiased text-[#E9F4F2] font-sans overflow-x-hidden">
+
+    <div class="glow-sphere w-[600px] h-[600px] top-[-10%] left-[-10%]"></div>
+    <div class="glow-sphere w-[800px] h-[800px] top-[25%] right-[-15%]"></div>
+    <div class="glow-sphere w-[700px] h-[700px] bottom-[10%] left-[-10%]"></div>
+
+    <nav class="w-full py-6 md:py-8 px-8 md:px-16 flex justify-between items-center bg-[#050505]/90 backdrop-blur-md sticky top-0 z-40 border-b border-white/10 text-white">
+        <div class="flex items-center space-x-4 select-none cursor-pointer" onclick="window.location.href='index.html'">
+            <div class="w-12 h-10 flex items-center justify-center">
+                <img src="WebMart Logo.png" alt="WebMart" class="max-w-full max-h-full object-contain">
+            </div>
+            <div class="text-3xl font-bold tracking-tighter text-white">
+                WebMart
+            </div>
+        </div>
+
+        <div class="hidden lg:flex items-center relative text-[17px] font-medium tracking-tight text-white gap-2" id="nav-container">
+            <div id="sliding-pill" class="absolute bg-white rounded-full opacity-0 pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] z-0"></div>
+            
+            <a href="index.html" class="nav-item px-5 py-2.5 transition-colors duration-200 z-10 relative">Home</a>
+            <a href="index.html#category" class="nav-item px-5 py-2.5 transition-colors duration-200 z-10 relative">Category</a>
+            <a href="services.html" class="nav-item px-5 py-2.5 transition-colors duration-200 z-10 relative font-semibold text-amber-500">Services</a>
+            <a href="about.html" class="nav-item px-5 py-2.5 transition-colors duration-200 z-10 relative">About</a>
+            <a href="#" id="nav-contact-btn" class="nav-item px-5 py-2.5 transition-colors duration-200 z-10 relative">Contact</a>
+            <a href="index.html#talk" class="nav-item px-5 py-2.5 transition-colors duration-200 z-10 relative font-semibold text-amber-500">Let's Talk</a>
+        </div>
+
+        <div class="lg:hidden">
+            <button id="mobile-menu-btn" class="text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <div id="services-mobile-drawer" class="fixed inset-0 bg-[#050505]/95 z-[999] transform translate-x-full transition-transform duration-300 lg:hidden flex flex-col justify-center items-center gap-8 text-2xl font-medium text-white">
+        <button id="close-services-mobile-btn" class="absolute top-6 right-8 text-white focus:outline-none">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <a href="index.html" class="serv-mobile-link hover:text-amber-500 transition-colors">Home</a>
+        <a href="index.html#category" class="serv-mobile-link hover:text-amber-500 transition-colors">Category</a>
+        <a href="services.html" class="serv-mobile-link text-amber-500 font-semibold">Services</a>
+        <a href="about.html" class="serv-mobile-link hover:text-amber-500 transition-colors">About</a>
+        <a href="#" id="services-mobile-contact-btn" class="serv-mobile-link hover:text-amber-500 transition-colors">Contact</a>
+    </div>
+
+    <header class="relative w-full py-20 md:py-32 px-6 md:px-12 max-w-7xl mx-auto text-center z-10 overflow-hidden">
+        <div class="mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md">
+            <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+            <span class="text-xs md:text-sm font-medium tracking-widest text-amber-500 uppercase">Professional Digital Solutions</span>
+        </div>
+        <h1 class="text-4xl sm:text-5xl md:text-7xl font-sans font-bold tracking-tight text-white max-w-5xl mx-auto leading-[1.1] mb-8">
+            Everything Your Business Needs to Succeed Online
+        </h1>
+        <p class="text-lg md:text-2xl text-stone-400 max-w-3xl mx-auto font-light leading-relaxed mb-12">
+            From ready-made business websites and custom development to hosting, SEO, branding, and ongoing support, WebMart provides everything you need under one roof.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="index.html#marketplace" class="w-full sm:w-auto px-8 py-4 bg-white text-black font-semibold rounded-md tracking-wide hover:bg-amber-500 hover:text-white transition-all duration-300 transform shadow-lg text-center">
+                Browse Website Designs
+            </a>
+            <a href="#" id="hero-consult-btn" class="w-full sm:w-auto px-8 py-4 bg-white/5 border border-white/10 text-white font-semibold rounded-md tracking-wide hover:bg-white/10 transition-all duration-300 text-center">
+                Get Free Consultation
+            </a>
+        </div>
+    </header>
+
+    <section class="py-16 px-6 md:px-12 max-w-7xl mx-auto relative z-10">
+        <div class="flex flex-col md:flex-row items-start md:items-end justify-between mb-16 border-b border-white/15 pb-8">
+            <div>
+                <h2 class="text-3xl md:text-5xl font-serif text-white tracking-tight mb-4">Our Service Portfolio</h2>
+                <p class="text-stone-400 max-w-xl">Explore our comprehensive array of digital assets engineered to secure high user conversions and local enterprise growth.</p>
+            </div>
+            <span class="text-sm font-mono text-amber-500/60 mt-4 md:mt-0">[ 26 Native Offerings Available ]</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <div class="glass-card rounded-xl p-8 flex flex-col justify-between group hover:border-amber-500/40 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)]">
+                <div>
+                    <div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Website Marketplace</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-6">Browse professionally designed business websites, preview live demos, and choose the perfect website for your business.</p>
+                    <ul class="space-y-2 mb-8 text-xs text-stone-500 font-medium">
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Ready-made website designs</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Industry-specific templates</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Live preview tracking mechanics</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Fast setup customization</li>
+                    </ul>
+                </div>
+                <button class="drawer-trigger-btn w-full py-3 bg-white/5 border border-white/10 text-white rounded-md font-semibold text-xs tracking-wider uppercase group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">Learn More</button>
+            </div>
+
+            <div class="glass-card rounded-xl p-8 flex flex-col justify-between group hover:border-amber-500/40 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)]">
+                <div>
+                    <div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Custom Website Development</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-6">Need something unique? We create fully customized websites tailored to your business goals.</p>
+                    <ul class="space-y-2 mb-8 text-xs text-stone-500 font-medium">
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Business websites</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Corporate architectures</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> High conversion landing pages</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Fully responsive execution</li>
+                    </ul>
+                </div>
+                <button class="drawer-trigger-btn w-full py-3 bg-white/5 border border-white/10 text-white rounded-md font-semibold text-xs tracking-wider uppercase group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">Learn More</button>
+            </div>
+
+            <div class="glass-card rounded-xl p-8 flex flex-col justify-between group hover:border-amber-500/40 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)]">
+                <div>
+                    <div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 00-2 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Website Customization</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-6">Already selected a design? We'll customize everything perfectly to match your specific localized storefront asset requirements.</p>
+                    <ul class="space-y-2 mb-8 text-xs text-stone-500 font-medium">
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Logo replacement & graphics</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Brand matched coloring presets</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Integrated conversion forms</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Galleries and testimonials</li>
+                    </ul>
+                </div>
+                <button class="drawer-trigger-btn w-full py-3 bg-white/5 border border-white/10 text-white rounded-md font-semibold text-xs tracking-wider uppercase group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">Learn More</button>
+            </div>
+
+            <div class="glass-card rounded-xl p-8 flex flex-col justify-between group hover:border-amber-500/40 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)]">
+                <div>
+                    <div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9h18"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Domain Registration</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-6">Register the perfect high-trust corporate domain name extensions for your local business.</p>
+                    <ul class="space-y-2 mb-8 text-xs text-stone-500 font-medium">
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Universal .com registration</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Premium TLD .in / .co.in nodes</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Fast domain zero-loss migration</li>
+                        <li class="flex items-center gap-2"><span class="text-amber-500">✓</span> Encrypted management vaults</li>
+                    </ul>
+                </div>
+                <button class="drawer-trigger-btn w-full py-3 bg-white/5 border border-white/10 text-white rounded-md font-semibold text-xs tracking-wider uppercase group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <div id="contact-drawer-overlay" class="fixed inset-0 bg-black/80 z-[100] opacity-0 pointer-events-none transition-opacity duration-500 backdrop-blur-sm"></div>
+    <div id="contact-drawer" class="fixed top-0 right-0 h-full w-full sm:w-[550px] bg-[#0E0E0E] border-l border-white/10 z-[101] transform translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] p-8 sm:p-12 overflow-y-auto">
+        <div class="flex justify-between items-center mb-10">
+            <h3 class="text-2xl font-bold text-white tracking-tight">Start a Project</h3>
+            <button id="close-drawer-btn" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-white/5 transition-colors">✕</button>
+        </div>
+        <form class="space-y-6" onsubmit="event.preventDefault(); alert('Request logged into WebMart Systems Ecosystem.');">
+            <div>
+                <label class="block text-xs uppercase tracking-widest text-stone-400 font-semibold mb-2">Full Name</label>
+                <input type="text" required class="w-full bg-white/5 border border-white/10 rounded-md p-4 text-white focus:outline-none focus:border-amber-500 transition-colors">
+            </div>
+            <div>
+                <label class="block text-xs uppercase tracking-widest text-stone-400 font-semibold mb-2">Business Email</label>
+                <input type="email" required class="w-full bg-white/5 border border-white/10 rounded-md p-4 text-white focus:outline-none focus:border-amber-500 transition-colors">
+            </div>
+            <div>
+                <label class="block text-xs uppercase tracking-widest text-stone-400 font-semibold mb-2">Desired Core Offering</label>
+                <select class="w-full bg-white/5 border border-white/10 rounded-md p-4 text-stone-300 focus:outline-none focus:border-amber-500 transition-colors">
+                    <option class="bg-[#0E0E0E]">Website Customization Package</option>
+                    <option class="bg-[#0E0E0E]">Full E-Commerce Engineering Bundle</option>
+                    <option class="bg-[#0E0E0E]">Corporate Application Architecture</option>
+                    <option class="bg-[#0E0E0E]">Local SEO Optimization Strategy</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-xs uppercase tracking-widest text-stone-400 font-semibold mb-2">Project Vision Details</label>
+                <textarea rows="4" required class="w-full bg-white/5 border border-white/10 rounded-md p-4 text-white focus:outline-none focus:border-amber-500 transition-colors"></textarea>
+            </div>
+            <button type="submit" class="w-full py-4 bg-amber-500 text-white font-bold rounded-md hover:bg-amber-600 transition-colors uppercase tracking-wider text-sm mt-4">Send Blueprint Pitch</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // --- NAVIGATION SLIDING MENU BACKGROUND PILL ---
+            const navContainer = document.getElementById("nav-container");
+            const navItems = document.querySelectorAll(".nav-item");
+            const slidingPill = document.getElementById("sliding-pill");
+
+            if (navContainer && slidingPill) {
+                navItems.forEach(item => {
+                    item.addEventListener("mouseenter", () => {
+                        const rect = item.getBoundingClientRect();
+                        const containerRect = navContainer.getBoundingClientRect();
+
+                        slidingPill.style.width = `${rect.width}px`;
+                        slidingPill.style.height = `${rect.height}px`;
+                        slidingPill.style.left = `${rect.left - containerRect.left}px`;
+                        slidingPill.style.top = `${rect.top - containerRect.top}px`;
+                        slidingPill.style.opacity = "1";
+
+                        navItems.forEach(el => el.classList.remove("active-text"));
+                        item.classList.add("active-text");
+                    });
+                });
+
+                navContainer.addEventListener("mouseleave", () => {
+                    slidingPill.style.opacity = "0";
+                    navItems.forEach(el => el.classList.remove("active-text"));
+                });
+            }
+
+            // --- SERVICES PAGE MOBILE MENU LOGIC ---
+            const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+            const servicesMobileDrawer = document.getElementById("services-mobile-drawer");
+            const closeServicesMobileBtn = document.getElementById("close-services-mobile-btn");
+            const servMobileLinks = document.querySelectorAll(".serv-mobile-link");
+
+            if (mobileMenuBtn && servicesMobileDrawer && closeServicesMobileBtn) {
+                mobileMenuBtn.addEventListener("click", () => {
+                    servicesMobileDrawer.classList.remove("translate-x-full");
+                    document.body.style.overflow = "hidden";
+                });
+
+                const closeDrawerFn = () => {
+                    servicesMobileDrawer.classList.add("translate-x-full");
+                    document.body.style.overflow = "";
+                };
+
+                closeServicesMobileBtn.addEventListener("click", closeDrawerFn);
+                servMobileLinks.forEach(link => {
+                    if(link.id !== "services-mobile-contact-btn") {
+                        link.addEventListener("click", closeDrawerFn);
+                    }
+                });
+            }
+
+            // --- SLIDING SIDE-PANEL CONTACT DRAWERS ENGINE ---
+            const overlay = document.getElementById("contact-drawer-overlay");
+            const drawer = document.getElementById("contact-drawer");
+            const closeBtn = document.getElementById("close-drawer-btn");
+            const servicesMobileContactBtn = document.getElementById("services-mobile-contact-btn");
+
+            const customTriggers = [
+                document.getElementById("nav-contact-btn"),
+                document.getElementById("hero-consult-btn"),
+                document.getElementById("cta-consult-btn")
+            ];
+            
+            const genericTriggers = document.querySelectorAll(".drawer-trigger-btn");
+
+            const openDrawer = (e) => {
+                if(e) e.preventDefault();
+                document.body.classList.add("drawer-open");
+                if(overlay) overlay.classList.remove("pointer-events-none", "opacity-0");
+                if(drawer) drawer.classList.remove("translate-x-full");
+            };
+
+            const closeDrawer = () => {
+                document.body.classList.remove("drawer-open");
+                if(overlay) overlay.classList.add("pointer-events-none", "opacity-0");
+                if(drawer) drawer.classList.add("translate-x-full");
+            };
+
+            customTriggers.forEach(btn => { if(btn) btn.addEventListener("click", openDrawer); });
+            genericTriggers.forEach(btn => { if(btn) btn.addEventListener("click", openDrawer); });
+            
+            if(servicesMobileContactBtn) {
+                servicesMobileContactBtn.addEventListener("click", (e) => {
+                    servicesMobileDrawer.classList.add("translate-x-full");
+                    openDrawer(e);
+                });
+            }
+
+            if(closeBtn) closeBtn.addEventListener("click", closeDrawer);
+            if(overlay) {
+                overlay.addEventListener("click", (e) => {
+                    if (e.target === overlay) closeDrawer();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
